@@ -17,8 +17,8 @@ api.interceptors.request.use(async (config: AxiosRequestConfig) => {
 });
 
 api.interceptors.response.use(
-    response => response,
-    error => {
+    (response) => response,
+    (error) => {
         if(!error.response) 
             return Promise.reject({error: 'Não foi possível concluir a operação, por favor tente novamente'});
 
