@@ -19,6 +19,7 @@ import {
   Toolbar,
 } from "@mui/material";
 import Icon from '@mui/material/Icon';
+import MenuIcon from '@mui/icons-material/Menu';
 import { grey, red } from "@mui/material/colors";
 
 export default function ScreenSkeleton(props: any) {
@@ -70,8 +71,8 @@ export default function ScreenSkeleton(props: any) {
           sx={{ zIndex: ({ zIndex }) => zIndex.drawer + 1 }}
         >
           <Toolbar>
-            <IconButton color="error" edge="start" onClick={handleLeftMenu}>
-             <Icon>menu</Icon>
+            <IconButton color="inherit" edge="start" onClick={handleLeftMenu}>
+             <MenuIcon />
             </IconButton>
             <Stack direction="row" alignItems="center" sx={{ flexGrow: 1 }}>
               <Box component="div">{topMenuLeftElement}</Box>
