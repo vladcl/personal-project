@@ -1,7 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 
-module.exports = {
+export default {
   uri: process.env.DB_URI,
   options: {
     useNewUrlParser: true,
