@@ -1,22 +1,21 @@
-
-import { Routes, Route, BrowserRouter} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
+import ScreenSkeleton from "./components/ScreenSkeleton";
+import { AuthProvider } from "./contexts/AuthProvider";
 
 const Teste = () => {
-    return (
-        <>
-        asdoaspdkaspodkas
-        </>
-    )
-}
-function AppRoutes() {
-    return (
-      <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Teste />} />
-            <Route path="/teste" element={<Teste />}/>
-        </Routes>
-      </BrowserRouter>
-    )
+  return (
+  <ScreenSkeleton>
+    sadaskdopaskdopkas
+  </ScreenSkeleton>)
+  ;
 };
-
-export default AppRoutes;
+export default function AppRoutes() {
+  return (
+    <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Teste />} />
+          <Route path="/login" element={<Teste />} />
+        </Routes>
+    </AuthProvider>
+  );
+}

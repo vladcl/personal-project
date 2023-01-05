@@ -1,0 +1,109 @@
+[
+    {
+        "route": "/dashboard",
+        "icon": "show_chart",
+        "label": "Dashboard",
+        "displayRole": ["admin", "manager"]
+
+    },
+    {
+        "route": "/usuario",
+        "icon": "person",
+        "label": "Usuários",
+        "displayRole": [
+            "admin",
+            "manager"
+        ]
+    },
+    {
+        "route": "/atividades",
+        "icon": "view_agenda",
+        "label": "Atividades",
+        "displayRole": [
+            "admin",
+            "manager",
+            "employee",
+            "external_user"
+        ]
+    },
+    {
+        "route": "/departamento",
+        "icon": "account_tree",
+        "label": "Departamentos",
+        "displayRole": [
+            "admin",
+            "manager"
+        ]
+    },
+    {
+        "route": "/formulario",
+        "icon": "format_list_numbered",
+        "label": "Formulários",
+        "displayRole": [
+            "admin",
+            "manager"
+        ]
+    },
+    {
+        "route": "/processo",
+        "icon": "fork_right",
+        "label": "Processos",
+        "displayRole": [
+            "admin",
+            "manager",
+            "employee",
+            "external_user"
+        ]
+    },
+    {
+        "route": "/documento",
+        "icon": "insert_drive_file",
+        "label": "Documentos",
+        "displayRole": [
+            "admin",
+            "manager"
+        ]
+    },
+    {
+        "icon": "tune",
+        "label": "Configurações",
+        "displayRole": [
+            "admin"
+        ],
+        "items": [
+            {
+                "route": "/prioridade",
+                "icon": "priority_high",
+                "label": "Prioridades",
+                "displayRole": [
+                    "admin",
+                    "manager"
+                ]
+            },
+            {
+                "route": "/menu",
+                "icon": "storage",
+                "label": "Bases de dados",
+                "displayRole": [
+                    "admin"
+                ]
+            },
+            {
+                "icon": "notifications",
+                "route": "/notificacao",
+                "label": "Notificações",
+                "displayRole": [
+                    "admin"
+                ]
+            },
+            {
+                "icon": "image",
+                "route": "/preferencias",
+                "label": "Logotipo",
+                "displayRole": [
+                    "admin"
+                ]
+            }
+        ]
+    }
+]
