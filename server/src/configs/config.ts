@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-export default {
+const config = {
   host: process.env.SRV_HOST,
   port: process.env.SRV_PORT,
   security: {
@@ -9,3 +9,5 @@ export default {
   },
   dateLocale: process.env.DEFAULT_LOCALE,
 };
+
+export default config;

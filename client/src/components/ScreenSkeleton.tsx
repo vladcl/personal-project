@@ -22,7 +22,7 @@ import Icon from '@mui/material/Icon';
 import MenuIcon from '@mui/icons-material/Menu';
 import { grey, red } from "@mui/material/colors";
 
-export default function ScreenSkeleton(props: any) {
+export default function ScreenSkeleton(props: Record<string, JSX.Element>) {
   const { children, topMenuLeftElement, topMenuRightElement } = props;
 
   const auth = useAuth();

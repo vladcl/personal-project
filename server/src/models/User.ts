@@ -1,28 +1,37 @@
-import mongoose from "mongoose";
-import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
-import Jwt from "jsonwebtoken";
-import bcrypt from 'bcryptjs';
-import UserSchema from '../schemas/UserSchema';
-import config from "../configs/config";
+import mongoose, { Schema } from "mongoose";
+import IUser from '../types/types';
 
-const security = {
-    expiresIn: config.security.expiresIn,
-    salt: config.security.salt,
-};
-
-UserSchema.pre('findOneAndUpdate', function(next) {
-    this.findByIdAndUpdate({}, {updatedAt: new Date()});
-
-    next();
-});
-
-UserSchema.pre('save', async function (next) {
-    if(!this.isModified('password')) next();
-
-    this.password = await bcrypt.hash(this.password, 10);
-});
-
-
-
-
-
+const UserSchema: Schema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    contact: {
+      type: Number,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    cpf: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+export default mongoose.model<IUser>('User', UserSchema);
