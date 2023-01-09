@@ -1,5 +1,5 @@
 export const config = {
     host: 'localhost',
-    port: 3001,
+    port: 3002,
     baseUrl: '/',
 }
