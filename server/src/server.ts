@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 
-import configs from './configs/config'
+import configs from "./configs/config";
 import config from "./configs/database";
 import routes from "./routes";
 
@@ -14,14 +14,16 @@ const options = config.options;
 
 const app = express();
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.set("strictQuery", true);
 mongoose
   .connect(uri, options)
+  .then(() => console.log("Connected"))
   .catch((err) => console.log("Unable to connect", err));
 
-app.use(cors);
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use("/api", routes);
 
 app.listen(port, host, () =>

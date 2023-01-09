@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import { isValidObjectId } from "mongoose";
-import User from "../models/user";
+// import { isValidObjectId } from "mongoose";
+import User from "../models/User";
 import * as bcrypt from "bcryptjs";
 import signJWT from "../functions/signJWT";
 
-export default {
+const UserController = {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
-      console.log(email, password)
+      console.log(email, password);
 
       User.find({ email })
         .exec()
@@ -46,7 +46,7 @@ export default {
             }
           });
         })
-        .catch((error) => {
+        .catch((error: any) => {
           return res.status(500).json({
             message: error.message,
             error,
@@ -61,3 +61,5 @@ export default {
     }
   },
 };
+
+export default UserController;
