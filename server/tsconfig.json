@@ -14,7 +14,7 @@
     "noFallthroughCasesInSwitch": true,
     "target": "esnext",
     "module": "commonjs",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "client", "client"  ]
+, "client", "client", "seeders"  ]
 }

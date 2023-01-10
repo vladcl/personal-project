@@ -7,10 +7,10 @@ import signJWT from "../functions/signJWT";
 const UserController = {
   async login(req: Request, res: Response, next: NextFunction) {
     try {
-      const { email, password } = req.body;
-      console.log(email, password);
+      const { username, password } = req.body;
+      // console.log(email, password);
 
-      User.find({ email })
+      User.find({ username })
         .exec()
         .then((users) => {
           if (users.length !== 1) {

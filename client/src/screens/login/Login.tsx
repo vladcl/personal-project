@@ -28,25 +28,25 @@ function Login() {
   const password = watch("password");
 
   type TLogin = {
-    email: string,
+    username: string,
     password: string,
   }
 
   const myCredentials = {
-    email: login,
+    username: login,
     password: password,
   };
 
   const authenticateUser = async (myCredentials: TLogin) => {
     try {
-      await auth.authenticate(myCredentials.email, myCredentials.password);
+      await auth.authenticate(myCredentials.username, myCredentials.password);
       if (!myCredentials) {
         return console.log("Forneça um usuário e senha");
       }
 
       navigate("/");
     } catch (err) {
-      console.log("invalid email or password");
+      console.log("invalid username or password");
     }
   };
 

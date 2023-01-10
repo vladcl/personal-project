@@ -59,7 +59,7 @@ export default function ScreenSkeleton(props: Record<string, JSX.Element>) {
   const getUserFirstLetter = () => {
     const auth = JSON.parse(localStorage.getItem("t")!);
 
-    return auth.email.chatAt(0).toUpperCase();
+    return auth.username.chatAt(0).toUpperCase();
   };
 
   return (

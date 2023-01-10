@@ -27,7 +27,7 @@ const signJWT = (
   try {
     jwt.sign(
       {
-        email: user.email,
+        username: user.username,
       },
       config.security.salt!,
       {

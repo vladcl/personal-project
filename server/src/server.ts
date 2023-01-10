@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.set("strictQuery", true);
 mongoose
   .connect(uri, options)
-  .then(() => console.log("Connected"))
+  .then(() => console.log("Database Connected"))
   .catch((err) => console.log("Unable to connect", err));
 
 app.use("/api", routes);
