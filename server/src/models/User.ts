@@ -1,17 +1,30 @@
 import mongoose, { Schema } from "mongoose";
-import IUser from '../types/types';
-import bcrypt from 'bcryptjs';
+import mongoosePaginate from "mongoose-paginate";
+import IUser from "../types/types";
+import bcrypt from "bcryptjs";
 
 const UserSchema: Schema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       required: true,
     },
-    password: {
+    email: {
+      type: String,
+      required: true,
+    },
+    number: {
       type: String,
       required: true,
       trim: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    cpf: {
+      type: String,
+      required: true,
     },
   },
   {
@@ -19,19 +32,24 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-UserSchema.pre('insertMany', async function(next, docs) {
+UserSchema.pre("insertMany", async function (next, docs) {
   if (docs.length > 0) {
-      const users = docs.map(async (user: any) => {
-          user.password = await bcrypt.hash(user.password, 10);
+    const users = [...docs].map(async (user) => {
+      user.password = await bcrypt.hash(user.password, 10);
 
-          return user;
-      });
-      docs = await Promise.all(users);
+      return user;
+    });
+    docs = await Promise.all(users);
 
-      next();
+    next();
   }
-  next(new Error('Nenhum usuário enviado'));
+  next(new Error("Nenhum usuário enviado"));
 });
 
+UserSchema.plugin(mongoosePaginate);
 
-export default mongoose.model<IUser>('User', UserSchema);
+const User = mongoose.model<IUser>("User", UserSchema);
+
+User.createIndexes();
+
+export default User;

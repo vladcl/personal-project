@@ -1,6 +1,5 @@
-import React, { MouseEvent, MouseEventHandler, useRef, useState } from "react";
-import { useQuery } from "react-query";
-import { useLocation, Link } from "react-router-dom";
+import { useRef, useState } from "react";
+import { useLocation} from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 import menuItems from "../datasets/menu_items.json";
@@ -22,7 +21,7 @@ import Icon from '@mui/material/Icon';
 import MenuIcon from '@mui/icons-material/Menu';
 import { grey, red } from "@mui/material/colors";
 
-export default function ScreenSkeleton(props: Record<string, JSX.Element>) {
+export default function ScreenSkeleton(props: Record<string, JSX.Element[]| JSX.Element>) {
   const { children, topMenuLeftElement, topMenuRightElement } = props;
 
   const auth = useAuth();

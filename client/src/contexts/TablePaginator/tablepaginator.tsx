@@ -2,30 +2,31 @@ import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import TablePagination from "@mui/material/TablePagination";
 import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
-import { ChangeEvent,  MouseEvent,} from "react";
-
-/**
- * @param {Object} props
- * @param {number} props.count
- * @param {number} props.page
- * @param {number} props.rowsPerPage
- * @param {function} props.onRowsPerPageChange
- * @param {function} props.onPageChange
- *
- */
+import { MouseEvent } from "react";
+import {
+  FirstPage,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  LastPage,
+} from "@mui/icons-material";
 
 interface RowsProps {
-  onRowsPerPageChange: (...args:any[]) => void;
-  onPageChange: (...args:any[]) => void;
-  rows: number;
+  onRowsPerPageChange: (...args: any[]) => void;
+  onPageChange: (...args: any[]) => void;
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  rowsPerPageOptions: number[];
 }
+
 export default function TablePaginator(props: RowsProps): JSX.Element {
   const { onPageChange, onRowsPerPageChange, ...rest } = props;
 
-  const handleRowsPerPage = (event: ChangeEvent, rows: number) => {
+  const handleRowsPerPage = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     onPageChange(event, 0);
-    onRowsPerPageChange(event, rows);
+    onRowsPerPageChange(event);
   };
 
   return (
@@ -38,13 +39,19 @@ export default function TablePaginator(props: RowsProps): JSX.Element {
         return `${from}–${to} de ${count !== -1 ? count : `mais de ${to}`}`;
       }}
       onRowsPerPageChange={handleRowsPerPage}
-      onPageChange={({onPageChange})}
+      onPageChange={onPageChange}
       ActionsComponent={TablePaginatorActions}
     />
   );
 }
+interface PaginatorProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (...args: any[]) => void;
+}
 
-function TablePaginatorActions(props) {
+function TablePaginatorActions(props: PaginatorProps) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -71,11 +78,7 @@ function TablePaginatorActions(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === "rtl" ? (
-          <Icon>last_page</Icon>
-        ) : (
-          <Icon>first_page</Icon>
-        )}
+        {theme.direction === "rtl" ? <LastPage /> : <FirstPage />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
@@ -83,9 +86,9 @@ function TablePaginatorActions(props) {
         aria-label="previous page"
       >
         {theme.direction === "rtl" ? (
-          <Icon>keyboard_arrow_right</Icon>
+          <KeyboardArrowRight />
         ) : (
-          <Icon>keyboard_arrow_left</Icon>
+          <KeyboardArrowLeft />
         )}
       </IconButton>
       <IconButton
@@ -94,9 +97,9 @@ function TablePaginatorActions(props) {
         aria-label="next page"
       >
         {theme.direction === "rtl" ? (
-          <Icon>keyboard_arrow_left</Icon>
+          <KeyboardArrowLeft />
         ) : (
-          <Icon>keyboard_arrow_right</Icon>
+          <KeyboardArrowRight />
         )}
       </IconButton>
       <IconButton
@@ -104,11 +107,7 @@ function TablePaginatorActions(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? (
-          <Icon>first_page</Icon>
-        ) : (
-          <Icon>last_page</Icon>
-        )}
+        {theme.direction === "rtl" ? <FirstPage /> : <LastPage />}
       </IconButton>
     </Box>
   );
